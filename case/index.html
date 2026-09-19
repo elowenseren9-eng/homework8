@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="课堂案例复现：迷你版校园公共信息与数据展示中心">
+  <title>迷你校园信息中心 · 案例复现</title>
+  <link rel="icon" href="../assets-logo.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../libs/bootstrap-5.3.8.min.css">
+  <link rel="stylesheet" href="case.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">跳到主要内容</a>
+  <nav class="navbar navbar-expand-lg navbar-dark sticky-top" aria-label="案例页面导航">
+    <div class="container">
+      <a class="navbar-brand" href="#home">迷你校园信息中心</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#caseNav" aria-controls="caseNav" aria-expanded="false" aria-label="展开导航">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="caseNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="#home">首页</a></li>
+          <li class="nav-item"><a class="nav-link" href="#rooms">自习室查询</a></li>
+          <li class="nav-item"><a class="nav-link" href="#stats">使用统计</a></li>
+          <li class="nav-item"><a class="nav-link" href="#landmark">校园地标 3D</a></li>
+          <li class="nav-item"><a class="nav-link" href="../index.html">作业总入口</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <main id="main">
+    <section id="home" class="case-hero">
+      <div class="container py-5">
+        <div class="row align-items-center g-5">
+          <div class="col-lg-7">
+            <p class="eyebrow">课堂案例复现</p>
+            <h1>在一个页面里找到<br>校园公共信息</h1>
+            <p class="lead">查询自习室开放情况，查看校园学习空间使用统计，并从三维视角认识钟楼地标。</p>
+            <a class="btn btn-warning btn-lg" href="#rooms">开始查询</a>
+          </div>
+          <div class="col-lg-5">
+            <div class="summary-panel">
+              <div><strong id="roomCount">—</strong><span>自习空间</span></div>
+              <div><strong id="seatCount">—</strong><span>总座位</span></div>
+              <div><strong id="openCount">—</strong><span>当前开放</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="rooms" class="section-space" aria-labelledby="roomsTitle">
+      <div class="container">
+        <div class="section-title">
+          <div><p class="eyebrow text-success">QUERY</p><h2 id="roomsTitle">自习室即时查询</h2></div>
+          <p>选择楼层与开放状态后立即更新，不需要再点查询按钮。</p>
+        </div>
+        <form class="filter-panel" aria-label="自习室筛选条件" onsubmit="return false">
+          <div>
+            <label class="form-label" for="buildingFilter">建筑</label>
+            <select class="form-select" id="buildingFilter"><option value="all">全部建筑</option></select>
+          </div>
+          <div>
+            <label class="form-label" for="floorFilter">楼层</label>
+            <select class="form-select" id="floorFilter">
+              <option value="all">全部楼层</option>
+              <option value="1">1 楼</option><option value="2">2 楼</option>
+              <option value="3">3 楼</option><option value="4">4 楼</option>
+            </select>
+          </div>
+          <div>
+            <label class="form-label" for="statusFilter">开放状态</label>
+            <select class="form-select" id="statusFilter">
+              <option value="all">全部状态</option><option value="开放">开放</option>
+              <option value="维修">维修</option><option value="闭馆">闭馆</option>
+            </select>
+          </div>
+          <div>
+            <label class="form-label" for="keywordFilter">关键词</label>
+            <input class="form-control" id="keywordFilter" type="search" placeholder="例如：图书馆" autocomplete="off">
+          </div>
+        </form>
+        <div id="roomMessage" class="status-message" role="status" aria-live="polite">正在读取自习室数据……</div>
+        <div id="roomList" class="row g-3" aria-label="筛选结果"></div>
+      </div>
+    </section>
+
+    <section id="stats" class="section-space section-tint" aria-labelledby="statsTitle">
+      <div class="container">
+        <div class="section-title">
+          <div><p class="eyebrow text-success">CHART</p><h2 id="statsTitle">空间使用统计</h2></div>
+          <p>单位：座位；来源：课程统一数据集（教学演示数据）</p>
+        </div>
+        <div class="chart-shell">
+          <div id="usageChart" class="chart" role="img" aria-label="各建筑自习座位总数与已占用座位数柱状图"></div>
+          <p id="chartFallback" class="status-message" role="status"></p>
+        </div>
+      </div>
+    </section>
+
+    <section id="landmark" class="section-space" aria-labelledby="landmarkTitle">
+      <div class="container">
+        <div class="section-title">
+          <div><p class="eyebrow text-success">THREE.JS</p><h2 id="landmarkTitle">校园地标 3D</h2></div>
+          <p>拖动旋转，滚轮缩放；“重置视角”可回到初始位置。</p>
+        </div>
+        <div class="landmark-grid">
+          <div class="scene-shell">
+            <div id="threeScene" tabindex="0" role="img" aria-label="由几何体组成的校园钟楼三维模型"></div>
+            <button id="resetView" class="btn btn-light scene-button" type="button">重置视角</button>
+          </div>
+          <aside class="landmark-copy">
+            <span class="tag">原创几何模型</span>
+            <h3>东陆钟楼 · 课堂演示模型</h3>
+            <p>模型由立方体、圆柱体和圆环组合完成，没有使用外部模型文件。暖金色钟面用于强调地标，绿色基座与页面主题保持一致。</p>
+            <p class="small text-secondary">如浏览器不支持 WebGL，本区域会显示可读的文字提示。</p>
+          </aside>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer><div class="container">云南大学 · 软件开发综合实践 · 第八次案例复现</div></footer>
+  <script src="../libs/bootstrap-5.3.8.bundle.min.js"></script>
+  <script src="../libs/echarts-5.6.0.min.js"></script>
+  <script src="../libs/three-0.128.0.min.js"></script>
+  <script src="../libs/OrbitControls-0.128.0.js"></script>
+  <script src="case.js"></script>
+</body>
+</html>
+
