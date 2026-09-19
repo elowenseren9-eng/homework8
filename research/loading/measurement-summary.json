@@ -1,0 +1,16 @@
+{
+  "date": "2026-09-19",
+  "browser": "Headless Chrome 153",
+  "settings": "禁用缓存，40 ms 延迟，约 2.56 Mbps 下载速度，每种策略运行 3 次取中位数",
+  "blocking": {
+    "domInteractiveMs": 4013.5,
+    "domContentLoadedMs": 4013.9,
+    "loadMs": 4015.4
+  },
+  "defer": {
+    "domInteractiveMs": 82.4,
+    "domContentLoadedMs": 4006.6,
+    "loadMs": 4008.0
+  },
+  "domInteractiveImprovementPercent": 97.9
+}

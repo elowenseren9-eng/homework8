@@ -180,7 +180,7 @@ function createSpaceCard(room) {
   const availability = document.createElement("strong"); availability.textContent = `${available} 空位`; availability.className = available ? "text-success" : "text-secondary";
   top.append(metaWrap, availability);
   const footer = document.createElement("div"); footer.className = "space-card-footer";
-  const meter = document.createElement("div"); meter.className = "seat-meter"; meter.setAttribute("aria-label", `座位使用率 ${ratio}%`);
+  const meter = document.createElement("div"); meter.className = "seat-meter"; meter.setAttribute("role", "progressbar"); meter.setAttribute("aria-label", "座位使用率"); meter.setAttribute("aria-valuemin", "0"); meter.setAttribute("aria-valuemax", "100"); meter.setAttribute("aria-valuenow", String(ratio));
   const fill = document.createElement("span"); fill.style.width = `${ratio}%`; meter.append(fill);
   const button = document.createElement("button"); button.type = "button"; button.className = `btn btn-sm save-button ${app.saved.has(room.name) ? "btn-success" : "btn-outline-success"}`; button.textContent = app.saved.has(room.name) ? "已收藏" : "收藏"; button.setAttribute("aria-pressed", String(app.saved.has(room.name)));
   button.addEventListener("click", () => toggleSaved(room.name));
@@ -215,7 +215,7 @@ function saveTasks() { localStorage.setItem("w8-study-tasks", JSON.stringify(app
 
 function renderTasks() {
   const host = document.getElementById("taskList"); host.replaceChildren();
-  if (!app.tasks.length) host.append(emptyPanel("还没有学习计划，可以从左侧添加一项。"));
+  if (!app.tasks.length) host.append(emptyPanel("还没有学习计划，可以从左侧添加一项。", "li"));
   app.tasks.forEach((task) => {
     const item = document.createElement("li"); item.className = `task-item ${task.done ? "completed" : ""}`;
     const check = document.createElement("input"); check.type = "checkbox"; check.className = "form-check-input"; check.checked = task.done; check.setAttribute("aria-label", `标记“${task.name}”为${task.done ? "未完成" : "已完成"}`);
@@ -249,7 +249,7 @@ function renderCharts() {
   app.charts.push(flow, types);
 }
 
-function emptyPanel(message) { const panel = document.createElement("div"); panel.className = "empty-panel"; panel.textContent = message; return panel; }
+function emptyPanel(message, tagName = "div") { const panel = document.createElement(tagName); panel.className = "empty-panel"; panel.textContent = message; return panel; }
 
 function initCampusScene() {
   const host = document.getElementById("campusScene"); host.replaceChildren();
@@ -299,4 +299,3 @@ function focusLandmark(landmark) {
 
 function resetCampusView(){document.getElementById("landmarkName").textContent="校园全景";document.getElementById("landmarkDescription").textContent="选择一个地点查看说明，也可以自由拖动浏览全部几何模型。";if(!app.scene)return;app.scene.camera.position.set(11,9,13);app.scene.controls.target.set(0,1.8,0);app.scene.controls.update();app.scene.host.focus();}
 function resizeScene(){if(!app.scene)return;const {host,camera,renderer}=app.scene;camera.aspect=host.clientWidth/host.clientHeight;camera.updateProjectionMatrix();renderer.setSize(host.clientWidth,host.clientHeight);}
-

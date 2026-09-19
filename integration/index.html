@@ -45,11 +45,11 @@
             <button id="showStateHelp" class="btn btn-outline-light btn-lg" type="button">异常状态说明</button>
           </div>
         </div>
-        <div class="metric-grid" aria-label="校园空间数据概览">
-          <article><span>开放空间</span><strong id="metricOpen">—</strong><small>间</small></article>
-          <article><span>可用座位</span><strong id="metricAvailable">—</strong><small>个</small></article>
-          <article><span>平均使用率</span><strong id="metricRate">—</strong><small>%</small></article>
-          <article><span>我的收藏</span><strong id="metricSaved">0</strong><small>间</small></article>
+        <div class="metric-grid" role="group" aria-label="校园空间数据概览">
+          <div><span>开放空间</span><strong id="metricOpen">—</strong><small>间</small></div>
+          <div><span>可用座位</span><strong id="metricAvailable">—</strong><small>个</small></div>
+          <div><span>平均使用率</span><strong id="metricRate">—</strong><small>%</small></div>
+          <div><span>我的收藏</span><strong id="metricSaved">0</strong><small>间</small></div>
         </div>
       </div>
     </section>
@@ -146,7 +146,7 @@
             <p class="eyebrow text-success">CURRENT POINT</p>
             <h3 id="landmarkName">校园全景</h3>
             <p id="landmarkDescription">选择一个地点查看说明，也可以自由拖动浏览全部几何模型。</p>
-            <div id="landmarkButtons" class="landmark-buttons" aria-label="三维地点选择"></div>
+            <div id="landmarkButtons" class="landmark-buttons" role="group" aria-label="三维地点选择"></div>
             <button id="resetCampusView" class="btn btn-outline-success" type="button">恢复全景</button>
           </aside>
         </div>
@@ -156,7 +156,7 @@
 
   <footer><div class="container-fluid px-lg-5 d-flex flex-wrap justify-content-between gap-2"><span>云大学习与空间协同中心</span><a href="../research/index.html">查看三项选做研究</a></div></footer>
 
-  <div class="modal fade" id="stateModal" tabindex="-1" aria-labelledby="stateModalTitle" aria-hidden="true">
+  <div class="modal fade" id="stateModal" role="dialog" tabindex="-1" aria-labelledby="stateModalTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered"><div class="modal-content"><div class="modal-header"><h2 class="modal-title fs-5" id="stateModalTitle">异常状态复现</h2><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="关闭"></button></div><div class="modal-body"><ul><li><code>?state=empty</code>：空数据</li><li><code>?state=malformed</code>：字段格式错误</li><li><code>?state=offline</code>：请求失败/离线模拟</li></ul><p class="mb-0">恢复正常时删除地址中的查询参数并刷新。</p></div></div></div>
   </div>
 
@@ -168,4 +168,3 @@
   <script src="integration.js"></script>
 </body>
 </html>
-

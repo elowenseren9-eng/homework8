@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="defer 脚本加载测试页">
+  <title>脚本加载对比 · defer 版本</title>
+  <script defer src="../../libs/jquery-3.7.1.min.js"></script>
+  <script defer src="../../libs/echarts-5.6.0.min.js"></script>
+  <script defer src="probe.js"></script>
+  <style>body{font:16px/1.7 "Microsoft YaHei",sans-serif;margin:0;background:#f3f7f5;color:#163129}main{max-width:800px;margin:4rem auto;padding:2rem;border-radius:1rem;background:#fff}code{color:#8c2850}.log{padding:1rem;background:#eef6f2;border-left:4px solid #0b6b4d}</style>
+</head>
+<body data-strategy="defer">
+  <main><h1>defer 脚本加载</h1><p>脚本可与 HTML 解析并行下载，按文档顺序执行，并在 <code>DOMContentLoaded</code> 前完成。</p><div id="timing" class="log" role="status">等待 load 事件……</div><p><a href="before.html">打开普通版本</a></p></main>
+</body>
+</html>
+
