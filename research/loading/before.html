@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="普通脚本阻塞加载测试页">
   <title>脚本加载对比 · 普通阻塞版本</title>
+  <link rel="icon" href="../../assets-logo.svg" type="image/svg+xml">
   <script src="../../libs/jquery-3.7.1.min.js"></script>
   <script src="../../libs/echarts-5.6.0.min.js"></script>
   <script src="probe.js"></script>
@@ -14,4 +15,3 @@
   <main><h1>普通脚本加载</h1><p>脚本位于 <code>&lt;head&gt;</code>，没有 defer/async，HTML 解析会等待脚本下载和执行。</p><div id="timing" class="log" role="status">等待 load 事件……</div><p><a href="after.html">打开 defer 版本</a></p></main>
 </body>
 </html>
-

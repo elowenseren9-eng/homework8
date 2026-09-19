@@ -7,6 +7,7 @@ body { margin:0; color:#172923; background:var(--paper); font-family:"Microsoft 
 .navbar { background:var(--dark); }
 .navbar-brand { font-weight:800; }
 .case-hero { min-height:560px; display:grid; align-items:center; color:#fff; background:radial-gradient(circle at 80% 15%,rgba(239,182,78,.3),transparent 22rem),linear-gradient(135deg,#073f32,#0c7957); }
+.case-hero .row { margin-right:0; margin-left:0; }
 .case-hero h1 { font-size:clamp(2.7rem,6vw,5rem); line-height:1.03; letter-spacing:-.05em; font-weight:900; }
 .case-hero .lead { max-width:42rem; margin:1.4rem 0 2rem; color:rgba(255,255,255,.83); line-height:1.8; }
 .eyebrow { margin:0 0 .55rem; font-weight:900; font-size:.75rem; letter-spacing:.16em; }
@@ -48,4 +49,3 @@ footer { padding:2rem 0; color:#d8e9e3; background:#062f26; }
 @media (max-width:991.98px) { .filter-panel { grid-template-columns:repeat(2,1fr); } .landmark-grid { grid-template-columns:1fr; } }
 @media (max-width:575.98px) { .summary-panel { grid-template-columns:1fr; } .summary-panel div + div { border-left:0; border-top:1px solid rgba(255,255,255,.18); } .section-title { align-items:start; flex-direction:column; gap:.6rem; } .filter-panel { grid-template-columns:1fr; } .scene-shell { height:390px; } }
 @media (prefers-reduced-motion:reduce) { *,*::before,*::after { scroll-behavior:auto!important; animation-duration:.01ms!important; transition-duration:.01ms!important; } }
-
