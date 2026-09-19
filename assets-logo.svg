@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title desc">
+  <title id="title">校园信息中心标志</title>
+  <desc id="desc">由教学楼和数据柱形图组成的绿色图标</desc>
+  <rect width="64" height="64" rx="18" fill="#f3bd57"/>
+  <path d="M12 28 32 15l20 13-4 5-16-10-16 10z" fill="#073f32"/>
+  <path d="M17 33h30v16H17z" fill="#fff"/>
+  <path d="M21 38h5v7h-5zm9-4h5v11h-5zm9 6h5v5h-5z" fill="#0b6b4d"/>
+</svg>
+

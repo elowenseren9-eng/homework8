@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="软件开发综合实践第八次作业入口">
+  <title>第八次课堂实践 · 作业入口</title>
+  <link rel="icon" href="assets-logo.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="libs/bootstrap-5.3.8.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">跳到主要内容</a>
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top" aria-label="主导航">
+    <div class="container">
+      <a class="navbar-brand d-flex align-items-center gap-2" href="index.html">
+        <img src="assets-logo.svg" width="36" height="36" alt="云大校园中心图标">
+        <span>第八次课堂实践</span>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav" aria-controls="mainNav" aria-expanded="false" aria-label="展开导航">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="mainNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="case/index.html">案例复现</a></li>
+          <li class="nav-item"><a class="nav-link" href="integration/index.html">自主实践</a></li>
+          <li class="nav-item"><a class="nav-link" href="research/index.html">选做研究</a></li>
+          <li class="nav-item"><a class="nav-link" href="README.md">说明文档</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <main id="main">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <p class="eyebrow">SOFTWARE DEVELOPMENT PRACTICE · WEEK 8</p>
+          <h1>校园公共信息与<br><span>数据展示中心</span></h1>
+          <p class="lead">把查询、图表、交互和三维场景接到同一个主题里，并为断网、空数据和格式错误准备可见的提示。</p>
+          <div class="d-flex flex-wrap gap-3 mt-4">
+            <a class="btn btn-primary btn-lg" href="integration/index.html">打开综合实践</a>
+            <a class="btn btn-outline-light btn-lg" href="case/index.html">查看案例复现</a>
+          </div>
+        </div>
+        <div class="hero-card" aria-label="本次任务概览">
+          <p class="card-kicker">完成情况</p>
+          <strong>4 + 3</strong>
+          <p>四个核心模块，三项选做研究</p>
+          <ul>
+            <li>响应式校园信息页</li>
+            <li>即时筛选与两类图表</li>
+            <li>可操作的校园三维场景</li>
+            <li>离线、空数据、错误数据处理</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="container section-space" aria-labelledby="work-title">
+      <div class="section-heading">
+        <p class="eyebrow text-primary">WORKSPACE</p>
+        <h2 id="work-title">三个入口，各自有明确用途</h2>
+      </div>
+      <div class="row g-4">
+        <div class="col-md-4">
+          <article class="work-card h-100">
+            <span class="number">01</span>
+            <h3>课堂案例复现</h3>
+            <p>严格按课堂要求完成首页、自习室查询、使用统计和校园地标 3D。</p>
+            <a href="case/index.html">进入案例 <span aria-hidden="true">→</span></a>
+          </article>
+        </div>
+        <div class="col-md-4">
+          <article class="work-card h-100">
+            <span class="number">02</span>
+            <h3>自主综合实践</h3>
+            <p>围绕“学习与空间协同”整合数据、收藏、图表、异常状态和无障碍操作。</p>
+            <a href="integration/index.html">进入项目 <span aria-hidden="true">→</span></a>
+          </article>
+        </div>
+        <div class="col-md-4">
+          <article class="work-card h-100">
+            <span class="number">03</span>
+            <h3>选做研究记录</h3>
+            <p>整理 Lighthouse、脚本加载策略与 W3C 验证的过程、结果和复现方法。</p>
+            <a href="research/index.html">查看研究 <span aria-hidden="true">→</span></a>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container d-flex flex-wrap justify-content-between gap-2">
+      <span>云南大学 · 软件开发综合实践</span>
+      <span>教学演示数据，不代表真实统计</span>
+    </div>
+  </footer>
+  <script src="libs/bootstrap-5.3.8.bundle.min.js"></script>
+</body>
+</html>
+
