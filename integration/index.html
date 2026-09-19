@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="自主综合实践：云大学习与空间协同中心">
+  <title>云大学习与空间协同中心</title>
+  <link rel="icon" href="../assets-logo.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../libs/bootstrap-5.3.8.min.css">
+  <link rel="stylesheet" href="integration.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">跳到主要内容</a>
+  <nav class="navbar navbar-expand-xl navbar-dark fixed-top" aria-label="自主实践主导航">
+    <div class="container-fluid px-lg-5">
+      <a class="navbar-brand d-flex align-items-center gap-2" href="#overview">
+        <img src="../assets-logo.svg" width="34" height="34" alt="云大校园中心图标">
+        <span>学习与空间协同中心</span>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#integrationNav" aria-controls="integrationNav" aria-expanded="false" aria-label="展开导航">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="integrationNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="#overview">概览</a></li>
+          <li class="nav-item"><a class="nav-link" href="#spaces">空间查询</a></li>
+          <li class="nav-item"><a class="nav-link" href="#plan">学习计划</a></li>
+          <li class="nav-item"><a class="nav-link" href="#insights">数据洞察</a></li>
+          <li class="nav-item"><a class="nav-link" href="#campus3d">三维校园</a></li>
+          <li class="nav-item"><a class="nav-link" href="../index.html">作业入口</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <main id="main">
+    <section id="overview" class="dashboard-hero">
+      <div class="container-fluid px-lg-5">
+        <div class="hero-copy">
+          <p class="eyebrow">AUTONOMOUS INTEGRATION PRACTICE</p>
+          <h1>今天去哪里学习，<br><span>用数据做决定。</span></h1>
+          <p>空间状态、个人计划和校园趋势共用一套数据入口。当前页面支持三种异常状态复现，便于检查错误提示。</p>
+          <div class="d-flex flex-wrap gap-2">
+            <a href="#spaces" class="btn btn-warning btn-lg">查找自习空间</a>
+            <button id="showStateHelp" class="btn btn-outline-light btn-lg" type="button">异常状态说明</button>
+          </div>
+        </div>
+        <div class="metric-grid" aria-label="校园空间数据概览">
+          <article><span>开放空间</span><strong id="metricOpen">—</strong><small>间</small></article>
+          <article><span>可用座位</span><strong id="metricAvailable">—</strong><small>个</small></article>
+          <article><span>平均使用率</span><strong id="metricRate">—</strong><small>%</small></article>
+          <article><span>我的收藏</span><strong id="metricSaved">0</strong><small>间</small></article>
+        </div>
+      </div>
+    </section>
+
+    <div id="globalAlert" class="container-fluid px-lg-5 alert-wrap" role="status" aria-live="polite"></div>
+
+    <section class="content-section" aria-labelledby="noticeTitle">
+      <div class="container-fluid px-lg-5">
+        <div class="section-heading compact">
+          <div><p class="eyebrow text-success">TODAY</p><h2 id="noticeTitle">今日提醒</h2></div>
+          <p id="lastUpdated">数据更新时间：—</p>
+        </div>
+        <div id="noticeList" class="notice-grid"></div>
+      </div>
+    </section>
+
+    <section id="spaces" class="content-section section-soft" aria-labelledby="spaceTitle">
+      <div class="container-fluid px-lg-5">
+        <div class="section-heading">
+          <div><p class="eyebrow text-success">FIND A SPACE</p><h2 id="spaceTitle">空间查询与收藏</h2></div>
+          <p>筛选条件实时生效。收藏记录保存在本机浏览器中，刷新页面不会丢失。</p>
+        </div>
+        <form class="query-bar" aria-label="空间筛选条件" onsubmit="return false">
+          <div class="query-wide">
+            <label for="spaceKeyword">搜索名称或建筑</label>
+            <input id="spaceKeyword" class="form-control" type="search" placeholder="输入图书馆、楠苑……" autocomplete="off">
+          </div>
+          <div>
+            <label for="spaceStatus">状态</label>
+            <select id="spaceStatus" class="form-select"><option value="all">全部</option><option value="开放">开放</option><option value="维修">维修</option><option value="闭馆">闭馆</option></select>
+          </div>
+          <div>
+            <label for="seatNeed">至少可用座位</label>
+            <input id="seatNeed" class="form-control" type="number" min="0" max="200" value="0">
+          </div>
+          <div class="check-wrap">
+            <input id="savedOnly" class="form-check-input" type="checkbox">
+            <label class="form-check-label" for="savedOnly">只看收藏</label>
+          </div>
+        </form>
+        <p id="spaceResult" class="result-message" role="status" aria-live="polite">正在加载空间数据……</p>
+        <div id="spaceList" class="space-grid"></div>
+      </div>
+    </section>
+
+    <section id="plan" class="content-section" aria-labelledby="planTitle">
+      <div class="container-fluid px-lg-5">
+        <div class="section-heading">
+          <div><p class="eyebrow text-success">MY PLAN</p><h2 id="planTitle">学习计划板</h2></div>
+          <p>添加、完成、删除均为有效交互；内容仅保存在当前设备的 localStorage。</p>
+        </div>
+        <div class="plan-layout">
+          <form id="taskForm" class="task-form">
+            <h3>添加一项计划</h3>
+            <div><label for="taskName">计划内容</label><input id="taskName" class="form-control" required maxlength="40" placeholder="例如：整理第八次实践报告"></div>
+            <div><label for="taskPlace">学习地点</label><select id="taskPlace" class="form-select"><option value="待定">待定</option></select></div>
+            <div><label for="taskDate">日期</label><input id="taskDate" class="form-control" type="date" required></div>
+            <button class="btn btn-success w-100" type="submit">加入计划</button>
+            <p id="taskFormMessage" class="form-message" role="status" aria-live="polite"></p>
+          </form>
+          <div>
+            <div class="task-summary"><span>未完成 <strong id="pendingCount">0</strong></span><span>已完成 <strong id="doneCount">0</strong></span></div>
+            <ul id="taskList" class="task-list" aria-label="我的学习计划"></ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="insights" class="content-section section-dark" aria-labelledby="insightTitle">
+      <div class="container-fluid px-lg-5">
+        <div class="section-heading light">
+          <div><p class="eyebrow">DATA INSIGHTS</p><h2 id="insightTitle">学习数据洞察</h2></div>
+          <p>来源：课程统一数据集及补充教学演示数据；不代表校园真实统计。</p>
+        </div>
+        <div class="chart-grid">
+          <article class="chart-card"><h3>一周到访趋势</h3><p>单位：人次</p><div id="flowChart" class="chart" role="img" aria-label="周一至周日学习空间到访人次折线图"></div></article>
+          <article class="chart-card"><h3>学习目的构成</h3><p>单位：百分比</p><div id="typeChart" class="chart" role="img" aria-label="课程复习、项目实践、考研备考和阅读写作占比环形图"></div></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="campus3d" class="content-section" aria-labelledby="campus3dTitle">
+      <div class="container-fluid px-lg-5">
+        <div class="section-heading">
+          <div><p class="eyebrow text-success">INTERACTIVE 3D</p><h2 id="campus3dTitle">三维校园空间索引</h2></div>
+          <p>拖动旋转、滚轮缩放；点击下方按钮可聚焦对应建筑。</p>
+        </div>
+        <div class="map-layout">
+          <div class="map-shell">
+            <div id="campusScene" tabindex="0" role="img" aria-label="图书馆、理科楼和钟楼组成的三维校园示意场景"></div>
+            <p id="webglMessage" class="scene-message" role="status"></p>
+          </div>
+          <aside class="map-info">
+            <p class="eyebrow text-success">CURRENT POINT</p>
+            <h3 id="landmarkName">校园全景</h3>
+            <p id="landmarkDescription">选择一个地点查看说明，也可以自由拖动浏览全部几何模型。</p>
+            <div id="landmarkButtons" class="landmark-buttons" aria-label="三维地点选择"></div>
+            <button id="resetCampusView" class="btn btn-outline-success" type="button">恢复全景</button>
+          </aside>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer><div class="container-fluid px-lg-5 d-flex flex-wrap justify-content-between gap-2"><span>云大学习与空间协同中心</span><a href="../research/index.html">查看三项选做研究</a></div></footer>
+
+  <div class="modal fade" id="stateModal" tabindex="-1" aria-labelledby="stateModalTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered"><div class="modal-content"><div class="modal-header"><h2 class="modal-title fs-5" id="stateModalTitle">异常状态复现</h2><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="关闭"></button></div><div class="modal-body"><ul><li><code>?state=empty</code>：空数据</li><li><code>?state=malformed</code>：字段格式错误</li><li><code>?state=offline</code>：请求失败/离线模拟</li></ul><p class="mb-0">恢复正常时删除地址中的查询参数并刷新。</p></div></div></div>
+  </div>
+
+  <script src="../libs/bootstrap-5.3.8.bundle.min.js"></script>
+  <script src="../libs/jquery-3.7.1.min.js"></script>
+  <script src="../libs/echarts-5.6.0.min.js"></script>
+  <script src="../libs/three-0.128.0.min.js"></script>
+  <script src="../libs/OrbitControls-0.128.0.js"></script>
+  <script src="integration.js"></script>
+</body>
+</html>
+
